@@ -23,7 +23,7 @@
 
 <script setup></script>
 
-<style>
+<style scoped>
 .category-grid {
   grid-gap: 1.3rem;
   display: grid;

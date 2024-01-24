@@ -15,9 +15,15 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faCartShopping, faUser, faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCartShopping,
+  faUser,
+  faUserSecret,
+  faChevronLeft,
+  faChevronRight
+} from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faUserSecret, faUser, faCartShopping)
+library.add(faUserSecret, faUser, faCartShopping, faChevronLeft, faChevronRight)
 
 app.component('font-awesome-icon', FontAwesomeIcon).mount('#app')

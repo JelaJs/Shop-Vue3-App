@@ -38,7 +38,7 @@ const getFewProducts = async () => {
 onMounted(getFewProducts)
 </script>
 
-<style>
+<style scoped>
 .section-padding {
   padding-top: 11rem;
 }
