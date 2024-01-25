@@ -3,7 +3,11 @@
     <p class="section-desc">Women's collection:</p>
     <Carousel class="carousel" v-slot="{ currentSlide }">
       <Slide v-for="(product, index) in sliderProducts" :key="index">
-        <div v-show="currentSlide === index + 1" class="slide-info">
+        <div
+          @click="goToSingleItemPage(product.id)"
+          v-show="currentSlide === index + 1"
+          class="slide-info"
+        >
           <img :src="product.image" alt="Slider product image" />
           <p class="slide-product-title">{{ product.title }}</p>
           <p class="slide-product-price">{{ product.price }}$</p>
@@ -15,9 +19,11 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import Carousel from '../components/CarouselComp.vue'
 import Slide from '../components/SlideComp.vue'
 
+const router = useRouter()
 const sliderProducts = ref(null)
 
 const getSliderProducts = async () => {
@@ -34,6 +40,10 @@ const getSliderProducts = async () => {
   } catch (error) {
     console.error('Something went wrong!', error)
   }
+}
+
+const goToSingleItemPage = (id) => {
+  router.push(`product/${id}`)
 }
 
 onMounted(getSliderProducts)
@@ -65,6 +75,7 @@ onMounted(getSliderProducts)
   outline: 2px solid rgba(0, 0, 0, 0.205);
   outline-offset: -2px;
   cursor: pointer;
+  z-index: 999;
 }
 
 .slide-info img {

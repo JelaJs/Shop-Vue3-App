@@ -1,19 +1,19 @@
 <template>
   <div class="container">
     <div class="category-grid">
-      <div class="grid-1">
+      <div class="grid-1" @click="goToCategoryPage('electronics')">
         <img src="../assets/imgs/elec.jpg" alt="Electonic category image" />
         <p>Electronics</p>
       </div>
-      <div class="grid-2">
+      <div class="grid-2" @click="goToCategoryPage('jewelery')">
         <img src="../assets/imgs/jewelerry1.jpg" alt="Electonic category image" />
         <p>Jewellery</p>
       </div>
-      <div class="grid-3">
+      <div class="grid-3" @click="goToCategoryPage(`men's clothing`)">
         <img src="../assets/imgs/menCloth.jpg" alt="Electonic category image" />
         <p>Men's Cloting</p>
       </div>
-      <div class="grid-3-lower">
+      <div class="grid-3-lower" @click="goToCategoryPage(`women's clothing`)">
         <img src="../assets/imgs/womenCl.jpg" alt="Electonic category image" />
         <p>Women's Clothing</p>
       </div>
@@ -21,7 +21,14 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+const goToCategoryPage = (category) => {
+  router.push(`/category/${category}`)
+}
+</script>
 
 <style scoped>
 .category-grid {

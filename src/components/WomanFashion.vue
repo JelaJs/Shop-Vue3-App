@@ -9,14 +9,21 @@
             Discover sophisticated elegance and comfort in our exclusive women's collection. Find
             perfect pieces that accentuate your unique beauty and complement your style.
           </p>
-          <button>Explore</button>
+          <button @click="goToCategoryPage(`women's clothing`)">Explore</button>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+const goToCategoryPage = (category) => {
+  router.push(`/category/${category}`)
+}
+</script>
 
 <style scoped>
 .fashion-section {

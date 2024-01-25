@@ -5,7 +5,6 @@
     <WomanFashion />
     <ProductsSlider />
     <Electronic />
-    <Footer />
   </main>
 </template>
 
@@ -16,7 +15,6 @@ import FewProducts from '../components/FewProducts.vue'
 import WomanFashion from '@/components/WomanFashion.vue'
 import ProductsSlider from '../components/ProductsSlider.vue'
 import Electronic from '../components/ElectronicSection.vue'
-import Footer from '../components/FooterComp.vue'
 </script>
 
 <style></style>

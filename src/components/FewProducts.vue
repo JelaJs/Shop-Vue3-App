@@ -2,7 +2,12 @@
   <div class="container section-padding">
     <p class="section-desc">Some of our products</p>
     <div v-if="fewProducts" class="few-prod-grid">
-      <div class="product-box" v-for="product in fewProducts" :key="product.id">
+      <div
+        @click="goToSingleItemPage(product.id)"
+        class="product-box"
+        v-for="product in fewProducts"
+        :key="product.id"
+      >
         <div class="img-wrap-center">
           <img :src="product.image" alt="Product image from API" />
         </div>
@@ -17,6 +22,8 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const fewProducts = ref(null)
 
 const getFewProducts = async () => {
@@ -29,10 +36,14 @@ const getFewProducts = async () => {
 
     const data = await response.json()
     fewProducts.value = data
-    console.log(fewProducts.value)
+    //console.log(fewProducts.value)
   } catch (error) {
     console.error('Something went wrong!', error)
   }
+}
+
+const goToSingleItemPage = (id) => {
+  router.push(`/product/${id}`)
 }
 
 onMounted(getFewProducts)

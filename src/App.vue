@@ -1,15 +1,17 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import Footer from './components/FooterComp.vue'
 </script>
 
 <template>
   <header>
     <div class="container">
       <nav class="nav-container">
-        <div class="logo"><p>SHOP</p></div>
+        <div class="logo">
+          <RouterLink to="/" class="home-link">SHOP</RouterLink>
+        </div>
         <ul>
-          <RouterLink to="/">Categories</RouterLink>
-          <RouterLink to="/about">Product Page</RouterLink>
+          <RouterLink to="/">Login</RouterLink>
           <font-awesome-icon
             class="cart-icon"
             icon="fa-solid fa-cart-shopping"
@@ -21,9 +23,14 @@ import { RouterLink, RouterView } from 'vue-router'
   </header>
 
   <RouterView />
+  <Footer />
 </template>
 
 <style scoped>
+main {
+  padding-top: 6rem;
+}
+
 header {
   -webkit-box-shadow: 0px 7px 14px -5px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 7px 14px -5px rgba(0, 0, 0, 0.1);
@@ -37,10 +44,12 @@ header {
   height: 12rem;
 }
 
-.container .nav-container p {
+.container .nav-container .home-link {
   font-weight: 600;
   font-size: 4rem;
   letter-spacing: 2px;
+  text-decoration: none;
+  color: #000;
 }
 
 .container .nav-container ul {

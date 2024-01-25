@@ -12,14 +12,21 @@
             headphones, and more. Immerse yourself in innovation and discover the future of digital
             gadgets.
           </p>
-          <button>Explore</button>
+          <button @click="goToCategoryPage('electronics')">Explore</button>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
+const goToCategoryPage = (category) => {
+  router.push(`/category/${category}`)
+}
+</script>
 
 <style scoped>
 .elec-section {
