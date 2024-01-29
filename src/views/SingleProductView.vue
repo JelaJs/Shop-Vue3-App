@@ -19,6 +19,10 @@
             </div>
             <p>{{ singleProduct.price * quantity }}$</p>
           </div>
+          <div class="product-btn-flex">
+            <button class="btn btn-buy">Buy Now</button>
+            <button @click="addToCart" class="btn btn-addToCart">Add to Cart</button>
+          </div>
         </div>
       </div>
     </div>
@@ -31,6 +35,12 @@ import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
 const router = useRouter()
+const storedArr = localStorage.getItem('cartArray')
+const cartItems = ref([])
+
+if (storedArr) {
+  cartItems.value = JSON.parse(storedArr)
+}
 
 const id = route.params.id
 const quantity = ref(1)
@@ -64,6 +74,13 @@ const decreaseQuantity = () => {
 
 const goBack = () => {
   router.go(-1)
+}
+
+const addToCart = () => {
+  if (cartItems.value.some((item) => item.id === singleProduct.value.id)) return
+
+  cartItems.value.push(singleProduct.value)
+  localStorage.setItem('cartArray', JSON.stringify(cartItems.value))
 }
 
 onMounted(getSingleProduct)
@@ -108,6 +125,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 6rem;
 }
 
 .count-price-wrap p {
@@ -134,5 +152,44 @@ main {
 
 .count-price-wrap .count-wrap button:hover {
   background-color: #c7c7c7;
+}
+
+.product-btn-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.product-btn-flex .btn {
+  border: none;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 1.5rem 3rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.product-btn-flex .btn-buy {
+  background-color: rgb(206, 23, 23);
+  color: #fff;
+}
+
+.product-btn-flex .btn-buy:hover {
+  background-color: transparent;
+  color: #000;
+  outline: 1px solid rgb(206, 23, 23);
+}
+
+.product-btn-flex .btn-addToCart {
+  outline: 1px solid #000;
+  background-color: #fff;
+  color: #000;
+}
+
+.product-btn-flex .btn-addToCart:hover {
+  background-color: #000;
+  color: #fff;
 }
 </style>

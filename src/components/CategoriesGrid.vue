@@ -64,7 +64,7 @@ const goToCategoryPage = (category) => {
   cursor: pointer;
   position: relative;
   background-color: #000;
-  z-index: 999;
+  z-index: 100;
 }
 
 .category-grid div p {

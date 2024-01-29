@@ -1,9 +1,5 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import Footer from './components/FooterComp.vue'
-</script>
-
 <template>
+  <CartComp />
   <header>
     <div class="container">
       <nav class="nav-container">
@@ -11,12 +7,14 @@ import Footer from './components/FooterComp.vue'
           <RouterLink to="/" class="home-link">SHOP</RouterLink>
         </div>
         <ul>
-          <RouterLink to="/">Login</RouterLink>
-          <font-awesome-icon
-            class="cart-icon"
-            icon="fa-solid fa-cart-shopping"
-            style="color: #000000"
-          />
+          <RouterLink to="/login">Login</RouterLink>
+          <div @click="openCart">
+            <font-awesome-icon
+              class="cart-icon"
+              icon="fa-solid fa-cart-shopping"
+              style="color: #000000"
+            />
+          </div>
         </ul>
       </nav>
     </div>
@@ -25,6 +23,22 @@ import Footer from './components/FooterComp.vue'
   <RouterView />
   <Footer />
 </template>
+
+<script setup>
+//Dovrsi logiku za cart da se automatski azurira kad dodam item(watch)... Dodaj header sticky efekat ne home kad predjem prvu sekciju... Uradi responsive... Dodaj animacije
+import { RouterLink, RouterView } from 'vue-router'
+import Footer from './components/FooterComp.vue'
+import CartComp from './components/CartComp.vue'
+
+const openCart = () => {
+  const cartOverlay = document.querySelector('#cart-overlay')
+  const cartItem = document.querySelector('#cart-item')
+
+  cartOverlay.classList.add('overlay')
+  cartItem.classList.remove('cart')
+  cartItem.classList.add('cart-open')
+}
+</script>
 
 <style scoped>
 main {

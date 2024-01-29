@@ -36,7 +36,7 @@ const getSliderProducts = async () => {
 
     const data = await response.json()
     sliderProducts.value = data.filter((data) => data.id > 14 && data.id < 20)
-    console.log(sliderProducts.value)
+    //console.log(sliderProducts.value)
   } catch (error) {
     console.error('Something went wrong!', error)
   }
@@ -75,7 +75,7 @@ onMounted(getSliderProducts)
   outline: 2px solid rgba(0, 0, 0, 0.205);
   outline-offset: -2px;
   cursor: pointer;
-  z-index: 999;
+  z-index: 100;
 }
 
 .slide-info img {
