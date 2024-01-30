@@ -14,7 +14,7 @@
             <p>Quantity</p>
             <div class="count-wrap">
               <button @click="decreaseQuantity">-</button>
-              <p>{{ quantity }}</p>
+              <p>{{ singleQuantity }}</p>
               <button @click="increaseQuantity">+</button>
             </div>
             <p>{{ singleProduct.price * quantity }}$</p>
@@ -30,12 +30,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, inject, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+
+const cartItemAdded = inject('cartItemAdded')
+const cartItemRemoved = inject('cartItemRemoved')
 
 const route = useRoute()
 const router = useRouter()
-const storedArr = localStorage.getItem('cartArray')
+let storedArr = localStorage.getItem('cartArray')
 const cartItems = ref([])
 
 if (storedArr) {
@@ -44,6 +47,7 @@ if (storedArr) {
 
 const id = route.params.id
 const quantity = ref(1)
+const singleQuantity = ref(1)
 
 const singleProduct = ref(null)
 const getSingleProduct = async () => {
@@ -62,12 +66,19 @@ const getSingleProduct = async () => {
   }
 }
 
+watch(cartItemRemoved, () => {
+  console.log('Desila se promena za brisanje')
+  storedArr = localStorage.getItem('cartArray')
+  cartItems.value = JSON.parse(storedArr)
+  cartItemRemoved.value = false
+})
+
 const increaseQuantity = () => {
-  quantity.value += 1
+  singleQuantity.value += 1
 }
 
 const decreaseQuantity = () => {
-  if (quantity.value === 1) return
+  if (singleQuantity.value === 1) return
 
   quantity.value -= 1
 }
@@ -77,10 +88,13 @@ const goBack = () => {
 }
 
 const addToCart = () => {
+  const product = { ...singleProduct.value, quantity: quantity.value }
   if (cartItems.value.some((item) => item.id === singleProduct.value.id)) return
+  //console.log('obj iz signle', cartItems.value)
 
-  cartItems.value.push(singleProduct.value)
+  cartItems.value.push(product)
   localStorage.setItem('cartArray', JSON.stringify(cartItems.value))
+  cartItemAdded.value = true
 }
 
 onMounted(getSingleProduct)

@@ -8,7 +8,8 @@
         </div>
         <ul>
           <RouterLink to="/login">Login</RouterLink>
-          <div @click="openCart">
+          <div class="cart-wrap" @click="openCart">
+            <p>{{ cartItems.length }}</p>
             <font-awesome-icon
               class="cart-icon"
               icon="fa-solid fa-cart-shopping"
@@ -26,9 +27,35 @@
 
 <script setup>
 //Dovrsi logiku za cart da se automatski azurira kad dodam item(watch)... Dodaj header sticky efekat ne home kad predjem prvu sekciju... Uradi responsive... Dodaj animacije
+import { ref, provide, watch } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import Footer from './components/FooterComp.vue'
 import CartComp from './components/CartComp.vue'
+
+let storedArr = localStorage.getItem('cartArray')
+const cartItems = ref([])
+
+const cartItemAdded = ref(false)
+const cartItemRemoved = ref(false)
+provide('cartItemAdded', cartItemAdded)
+provide('cartItemRemoved', cartItemRemoved)
+
+if (storedArr) {
+  cartItems.value = JSON.parse(storedArr)
+}
+
+watch(cartItemAdded, () => {
+  console.log('Desila se promena')
+  storedArr = localStorage.getItem('cartArray')
+  cartItems.value = JSON.parse(storedArr)
+})
+
+watch(cartItemRemoved, () => {
+  console.log('Desila se promena za brisanje')
+  storedArr = localStorage.getItem('cartArray')
+  cartItems.value = JSON.parse(storedArr)
+  //cartItemRemoved.value = false
+})
 
 const openCart = () => {
   const cartOverlay = document.querySelector('#cart-overlay')
@@ -83,5 +110,16 @@ header {
 .container .nav-container ul .cart-icon {
   color: #000;
   cursor: pointer;
+}
+
+.cart-wrap {
+  position: relative;
+}
+
+.cart-wrap p {
+  font-size: 1.2rem;
+  position: absolute;
+  top: -10px;
+  right: -5px;
 }
 </style>
