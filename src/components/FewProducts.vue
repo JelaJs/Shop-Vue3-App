@@ -1,5 +1,5 @@
 <template>
-  <div class="container section-padding">
+  <div class="container section-padding" id="home-second-section">
     <p class="section-desc">Some of our products</p>
     <div v-if="fewProducts" class="few-prod-grid">
       <div

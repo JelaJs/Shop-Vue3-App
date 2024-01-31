@@ -23,6 +23,7 @@
           <p class="product-price">{{ product.price }}$</p>
         </div>
       </div>
+      <div v-else><ProductSkeleton /></div>
     </div>
   </main>
 </template>
@@ -30,6 +31,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import ProductSkeleton from '../components/ProductsSkeleton.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -43,6 +45,9 @@ const getCategoryProducts = async () => {
     const response = await fetch(url)
 
     if (!response.ok) throw new Error('Something went wrong', response.status)
+
+    //Timeout for skeleton animation, to prevent flicking
+    await new Promise((res) => setTimeout(res, 500))
 
     const data = await response.json()
     categoryProducts.value = data

@@ -17,7 +17,7 @@
               <p>{{ singleQuantity }}</p>
               <button @click="increaseQuantity">+</button>
             </div>
-            <p>{{ singleProduct.price * quantity }}$</p>
+            <p>{{ singleProduct.price * singleQuantity }}$</p>
           </div>
           <div class="product-btn-flex">
             <button class="btn btn-buy">Buy Now</button>
@@ -25,6 +25,7 @@
           </div>
         </div>
       </div>
+      <div v-else><SingleProductSkeleton /></div>
     </div>
   </main>
 </template>
@@ -32,6 +33,7 @@
 <script setup>
 import { ref, onMounted, inject, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import SingleProductSkeleton from '../components/SingleProductSkeleton.vue'
 
 const cartItemAdded = inject('cartItemAdded')
 const cartItemRemoved = inject('cartItemRemoved')
@@ -58,9 +60,12 @@ const getSingleProduct = async () => {
 
     if (!response.ok) throw new Error('Something went wrong', response.status)
 
+    //Timeout for skeleton animation, to prevent flicking
+    await new Promise((res) => setTimeout(res, 500))
+
     const data = await response.json()
     singleProduct.value = data
-    console.log(singleProduct.value)
+    //console.log(singleProduct.value)
   } catch (error) {
     console.error('Something went wrong!', error)
   }
@@ -80,7 +85,7 @@ const increaseQuantity = () => {
 const decreaseQuantity = () => {
   if (singleQuantity.value === 1) return
 
-  quantity.value -= 1
+  singleQuantity.value -= 1
 }
 
 const goBack = () => {

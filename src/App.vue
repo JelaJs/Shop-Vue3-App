@@ -21,12 +21,17 @@
     </div>
   </header>
 
-  <RouterView />
+  <RouterView v-slot="{ Component }">
+    <Transition name="page" mode="out-in">
+      <component :is="Component" />
+    </Transition>
+  </RouterView>
+
   <Footer />
 </template>
 
 <script setup>
-//Dovrsi logiku za cart da se automatski azurira kad dodam item(watch)... Dodaj header sticky efekat ne home kad predjem prvu sekciju... Uradi responsive... Dodaj animacije
+//Uradi responsive... Dodaj animacije... Dodaj error handling za async f.
 import { ref, provide, watch } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import Footer from './components/FooterComp.vue'
@@ -82,7 +87,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 12rem;
+  height: 9rem;
 }
 
 .container .nav-container .home-link {
@@ -121,5 +126,15 @@ header {
   position: absolute;
   top: -10px;
   right: -5px;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: 400ms ease all;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container categories-home-section">
     <div class="category-grid">
       <div class="grid-1" @click="goToCategoryPage('electronics')">
         <img src="../assets/imgs/elec.jpg" alt="Electonic category image" />
