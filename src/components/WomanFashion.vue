@@ -93,4 +93,50 @@ const goToCategoryPage = (category) => {
   width: 53rem;
   height: 78rem;
 }
+
+/**Responsive */
+@media (max-width: 1100px) {
+  .fashion-section .content-wrap img {
+    width: 50rem;
+    height: 68rem;
+  }
+
+  .fashion-section .content-wrap .img-wrap {
+    height: 68rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .fashion-section .content-wrap img {
+    width: 45rem;
+    height: 59rem;
+  }
+
+  .fashion-section .content-wrap .img-wrap {
+    height: 59rem;
+  }
+}
+
+@media (max-width: 581px) {
+  .fashion-section .content-wrap img {
+    width: 32rem;
+    height: 46rem;
+  }
+
+  .fashion-section .content-wrap .img-wrap {
+    height: 46rem;
+  }
+
+  .fashion-section .content-wrap .img-wrap .fashion-content-wrap .fashion-header {
+    font-size: 2rem;
+  }
+
+  .fashion-section .content-wrap .img-wrap .fashion-content-wrap .fashion-text {
+    margin-bottom: 3rem;
+  }
+
+  .fashion-section .content-wrap .img-wrap .fashion-content-wrap button {
+    padding: 1rem 2rem;
+  }
+}
 </style>

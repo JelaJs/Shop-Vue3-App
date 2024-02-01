@@ -17,6 +17,9 @@
         <p class="product-price">{{ product.price }}$</p>
       </div>
     </div>
+    <div v-if="responseError">
+      <p class="response-error-msg">Something went wrong, try again.</p>
+    </div>
   </div>
 </template>
 
@@ -25,6 +28,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const fewProducts = ref(null)
+const responseError = ref(false)
 
 const getFewProducts = async () => {
   try {
@@ -36,9 +40,11 @@ const getFewProducts = async () => {
 
     const data = await response.json()
     fewProducts.value = data
+    responseError.value = false
     //console.log(fewProducts.value)
   } catch (error) {
     console.error('Something went wrong!', error)
+    responseError.value = true
   }
 }
 
@@ -111,5 +117,46 @@ onMounted(getFewProducts)
   left: 10px;
   font-size: 1.6rem;
   font-weight: 500;
+}
+
+/**Responsive */
+@media (max-width: 1100px) {
+  .few-prod-grid img {
+    width: 14rem;
+    height: 16rem;
+  }
+
+  .few-prod-grid .product-info p,
+  .product-price {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .few-prod-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .few-prod-grid img {
+    width: 13rem;
+    height: 15rem;
+  }
+
+  .section-desc {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 581px) {
+  .few-prod-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 446px) {
+  .few-prod-grid img {
+    width: 11rem;
+    height: 13rem;
+  }
 }
 </style>

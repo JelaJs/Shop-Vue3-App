@@ -20,36 +20,39 @@ const wLocation = ref(null)
 
 //Sticky Navbar observer animation
 const setSticky = () => {
-  setTimeout(() => {
-    const section1 = document.querySelector('.categories-home-section')
-    const nav = document.querySelector('header')
-    const navHeight = nav.getBoundingClientRect().height
-    //console.log(window.location.pathname)
+  const section1 = document.querySelector('.categories-home-section')
+  const nav = document.querySelector('header')
+  const navHeight = nav.getBoundingClientRect().height
+  //console.log(window.location.pathname)
 
-    if (wLocation.value === '/') {
-      const obsCallback = function (entries) {
-        const [entry] = entries
-        if (!entry.isIntersecting) {
-          nav.classList.add('sticky')
-          section1.style.paddingTop = `${navHeight}px`
-        } else {
-          nav.classList.remove('sticky')
-          section1.style.paddingTop = '0px'
-        }
-      }
-
-      const obsOptions = {
-        root: null,
-        threshold: 0,
-        rootMargin: `${navHeight}px`
-      }
-
-      const observer = new IntersectionObserver(obsCallback, obsOptions)
-      observer.observe(section1)
+  const obsCallback = function (entries) {
+    const [entry] = entries
+    if (!entry.isIntersecting) {
+      nav.classList.add('sticky')
+      section1.style.paddingTop = `${navHeight}px`
     } else {
       nav.classList.remove('sticky')
+      section1.style.paddingTop = '0px'
     }
-  }, 300)
+  }
+
+  const obsOptions = {
+    root: null,
+    threshold: 0,
+    rootMargin: `${navHeight}px`
+  }
+
+  const observer = new IntersectionObserver(obsCallback, obsOptions)
+
+  if (wLocation.value === '/') {
+    observer.observe(section1)
+  }
+
+  if (wLocation.value !== '/') {
+    observer.unobserve(section1)
+    nav.classList.remove('sticky')
+    console.log(nav)
+  }
 }
 
 onMounted(() => {

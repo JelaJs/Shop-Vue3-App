@@ -92,4 +92,37 @@
     background-color: hsl(200, 20%, 95%);
   }
 }
+
+/**Responsive */
+@media (max-width: 767px) {
+  .single-skeleton-grid {
+    gap: 1rem;
+  }
+
+  .single-skeleton-second-col {
+    padding: 1rem 1rem 2rem 2rem;
+  }
+
+  .signle-skeleton-img {
+    width: 20rem;
+    height: 20rem;
+  }
+}
+
+@media (max-width: 581px) {
+  .single-skeleton-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .first-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .signle-skeleton-img {
+    width: 14rem;
+    height: 14rem;
+  }
+}
 </style>

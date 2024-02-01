@@ -23,7 +23,10 @@
           <p class="product-price">{{ product.price }}$</p>
         </div>
       </div>
-      <div v-else><ProductSkeleton /></div>
+      <div v-if="!categoryProducts && !responseError"><ProductSkeleton /></div>
+      <div v-if="responseError">
+        <p class="response-error-msg">Something went wrong, try again.</p>
+      </div>
     </div>
   </main>
 </template>
@@ -36,6 +39,7 @@ import ProductSkeleton from '../components/ProductsSkeleton.vue'
 const router = useRouter()
 const route = useRoute()
 const category = route.params.id
+const responseError = ref(false)
 
 const categoryProducts = ref(null)
 const getCategoryProducts = async () => {
@@ -51,9 +55,11 @@ const getCategoryProducts = async () => {
 
     const data = await response.json()
     categoryProducts.value = data
+    responseError.value = false
     //console.log(categoryProducts.value)
   } catch (error) {
     console.error('Something went wrong!', error)
+    responseError.value = true
   }
 }
 
@@ -64,7 +70,20 @@ const goBackHome = () => {
 const goToSingleItemPage = (id) => {
   router.push(`/product/${id}`)
 }
-onMounted(getCategoryProducts)
+
+const removeSticky = () => {
+  const nav = document.querySelector('header')
+
+  setTimeout(() => {
+    nav.classList.add('sticky')
+    nav.classList.remove('sticky')
+  }, 300)
+}
+
+onMounted(() => {
+  getCategoryProducts()
+  removeSticky()
+})
 </script>
 
 <style scoped>
@@ -139,5 +158,33 @@ main {
   left: 10px;
   font-size: 1.6rem;
   font-weight: 500;
+}
+
+/**Responsive */
+@media (max-width: 767px) {
+  .categories-grid img {
+    width: 13rem;
+    height: 15rem;
+  }
+
+  .categories-grid .product-info .product-name {
+    font-size: 1.4rem;
+  }
+
+  .product-price {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 581px) {
+  .categories-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 446px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

@@ -25,7 +25,10 @@
           </div>
         </div>
       </div>
-      <div v-else><SingleProductSkeleton /></div>
+      <div v-if="!singleProduct && !responseError"><SingleProductSkeleton /></div>
+      <div v-if="responseError">
+        <p class="response-error-msg">Something went wrong, try again.</p>
+      </div>
     </div>
   </main>
 </template>
@@ -42,6 +45,7 @@ const route = useRoute()
 const router = useRouter()
 let storedArr = localStorage.getItem('cartArray')
 const cartItems = ref([])
+const responseError = ref(false)
 
 if (storedArr) {
   cartItems.value = JSON.parse(storedArr)
@@ -65,9 +69,11 @@ const getSingleProduct = async () => {
 
     const data = await response.json()
     singleProduct.value = data
+    responseError.value = false
     //console.log(singleProduct.value)
   } catch (error) {
     console.error('Something went wrong!', error)
+    responseError.value = true
   }
 }
 
@@ -102,7 +108,19 @@ const addToCart = () => {
   cartItemAdded.value = true
 }
 
-onMounted(getSingleProduct)
+const removeSticky = () => {
+  const nav = document.querySelector('header')
+
+  setTimeout(() => {
+    nav.classList.add('sticky')
+    nav.classList.remove('sticky')
+  }, 300)
+}
+
+onMounted(() => {
+  getSingleProduct()
+  removeSticky()
+})
 </script>
 
 <style scoped>
@@ -210,5 +228,73 @@ main {
 .product-btn-flex .btn-addToCart:hover {
   background-color: #000;
   color: #fff;
+}
+
+/**Responsive */
+@media (max-width: 1100px) {
+  .product-content-wrap .description {
+    font-size: 1.6rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+
+  .count-price-wrap .count-wrap button {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .count-price-wrap p {
+    padding: 0;
+    font-size: 1.6rem;
+  }
+
+  .count-price-wrap {
+    margin-bottom: 3rem;
+  }
+
+  .product-btn-flex .btn {
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+  }
+
+  .product-img-wrap img {
+    width: 25rem;
+    height: 25rem;
+    margin-top: 4rem;
+  }
+
+  .back-wrap .back-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .product-img-wrap img {
+    width: 18rem;
+    height: 18rem;
+  }
+
+  .single-product-flex {
+    gap: 2rem;
+  }
+
+  .product-content-wrap {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 581px) {
+  .single-product-flex {
+    grid-template-columns: 1fr;
+  }
+
+  .product-img-wrap {
+    text-align: center;
+  }
+
+  .product-img-wrap img {
+    margin-top: 0;
+  }
 }
 </style>

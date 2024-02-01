@@ -98,4 +98,11 @@ onMounted(() => {
 .pagination .active {
   background-color: #b1b1b1;
 }
+
+/**Responsiove */
+@media (max-width: 581px) {
+  .pagination {
+    top: 10px;
+  }
+}
 </style>

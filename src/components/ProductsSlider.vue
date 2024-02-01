@@ -94,4 +94,36 @@ onMounted(getSliderProducts)
   font-size: 1.6rem;
   font-weight: 500;
 }
+
+/**Responsive */
+@media (max-width: 767px) {
+  .slide-info img {
+    width: 21rem;
+    height: 21rem;
+  }
+
+  .slide-info {
+    width: 23rem;
+  }
+
+  .section-desc {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 581px) {
+  .slide-info img {
+    width: 17rem;
+    height: 17rem;
+  }
+
+  .slide-info {
+    width: 20rem;
+    margin-top: 4rem;
+  }
+
+  .pagination {
+    top: 10px;
+  }
+}
 </style>

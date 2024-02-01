@@ -7,7 +7,7 @@
           <RouterLink to="/" class="home-link">SHOP</RouterLink>
         </div>
         <ul>
-          <RouterLink to="/login">Login</RouterLink>
+          <RouterLink to="/">Home</RouterLink>
           <div class="cart-wrap" @click="openCart">
             <p>{{ cartItems.length }}</p>
             <font-awesome-icon
@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-//Uradi responsive... Dodaj animacije... Dodaj error handling za async f.
+//Uradi responsive... Dodaj error handling za async f.
 import { ref, provide, watch } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import Footer from './components/FooterComp.vue'
@@ -103,7 +103,7 @@ header {
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .container .nav-container ul a {
@@ -136,5 +136,17 @@ header {
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
+}
+
+/**Responsive */
+@media (max-width: 767px) {
+  .container .nav-container {
+    padding: 0 20px;
+    height: 7rem;
+  }
+
+  .container .nav-container .home-link {
+    font-size: 3rem;
+  }
 }
 </style>

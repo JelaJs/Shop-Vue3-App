@@ -137,6 +137,7 @@ onMounted(sumtotalPrice)
   right: 0;
   width: 0;
   height: 100%;
+  z-index: 999;
 }
 
 .cart-open {
@@ -248,5 +249,19 @@ onMounted(sumtotalPrice)
   font-weight: 300;
   cursor: pointer;
   transition: all 0.2s ease-in;
+}
+
+/**Responsive */
+@media (max-width: 940px) {
+  .cart-item-wrap .cart-item img {
+    width: 13rem;
+    height: 15rem;
+  }
+}
+
+@media (max-width: 446px) {
+  .cart-open {
+    width: 100%;
+  }
 }
 </style>

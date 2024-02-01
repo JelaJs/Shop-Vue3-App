@@ -75,4 +75,28 @@
     background-color: hsl(200, 20%, 95%);
   }
 }
+
+/**Responsive */
+@media (max-width: 767px) {
+  .grid {
+    gap: 1rem;
+  }
+
+  .skeleton-wrap {
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 581px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 446px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>

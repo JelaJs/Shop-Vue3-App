@@ -80,6 +80,8 @@ const goToCategoryPage = (category) => {
 .category-grid div img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 .category-grid div::after {
@@ -96,5 +98,23 @@ const goToCategoryPage = (category) => {
 
 .category-grid div:hover::after {
   background: rgba(0, 0, 0, 0.6);
+}
+
+/**Responsive */
+@media (max-width: 767px) {
+  .category-grid {
+    grid-template-areas:
+      'one two'
+      'four four-low';
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .category-grid .grid-1,
+  .category-grid .grid-2,
+  .category-grid .grid-3,
+  .category-grid .grid-3-lower {
+    height: 250px;
+  }
 }
 </style>

@@ -74,4 +74,54 @@ const goToCategoryPage = (category) => {
   outline: 1px solid #000;
   color: #000;
 }
+
+/**Responsive */
+@media (max-width: 1100px) {
+  .elec-section .content-flex {
+    gap: 30px;
+  }
+
+  .elec-section .content-flex .right-col .tech-section-heading {
+    font-size: 2.2rem;
+  }
+
+  .elec-section .content-flex .right-col .tech-section-desc {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 940px) {
+  .elec-section .content-flex .left-col img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .content-flex {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .elec-section .content-flex .right-col .tech-section-heading {
+    font-size: 2rem;
+  }
+
+  .elec-section .content-flex .right-col button {
+    padding: 1rem 2rem;
+  }
+
+  .elec-section .content-flex .right-col {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 581px) {
+  .elec-section .content-flex {
+    display: block;
+  }
+
+  .elec-section .content-flex .left-col img {
+    margin-bottom: 2rem;
+  }
+}
 </style>
