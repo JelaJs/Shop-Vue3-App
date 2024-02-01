@@ -27,6 +27,9 @@ const router = createRouter({
       name: '404',
       component: PageNotFound
     }
-  ]
+  ],
+  scrollBehavior() {
+    return { top: 0, left: 0 }
+  }
 })
 export default router
