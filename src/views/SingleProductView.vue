@@ -130,6 +130,7 @@ main {
 
 .back-wrap {
   margin-bottom: 3rem;
+  display: inline-block;
 }
 
 .back-wrap .back-icon {
