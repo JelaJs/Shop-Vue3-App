@@ -23,8 +23,8 @@ const router = createRouter({
       component: SingleProductView
     },
     {
-      path: '/*',
-      name: '404',
+      path: '/:catchAll(.*)',
+      name: 'NotFound',
       component: PageNotFound
     }
   ],

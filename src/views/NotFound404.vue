@@ -1,3 +1,10 @@
 <template>
-  <div><h1>Page not found</h1></div>
+  <div class="container notfound"><h1>Page doesn't exist</h1></div>
 </template>
+
+<style scoped>
+.notfound {
+  padding: 6rem;
+  text-align: center;
+}
+</style>
