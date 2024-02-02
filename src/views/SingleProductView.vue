@@ -17,7 +17,7 @@
               <p>{{ singleQuantity }}</p>
               <button @click="increaseQuantity">+</button>
             </div>
-            <p>{{ singleProduct.price * singleQuantity }}$</p>
+            <p>{{ (singleProduct.price * singleQuantity).toFixed(2) }}$</p>
           </div>
           <div class="product-btn-flex">
             <button class="btn btn-buy">Buy Now</button>
@@ -286,6 +286,9 @@ main {
 }
 
 @media (max-width: 581px) {
+  main {
+    height: 100%;
+  }
   .single-product-flex {
     grid-template-columns: 1fr;
   }
