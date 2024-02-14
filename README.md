@@ -14,3 +14,4 @@ If he decides to add items to the cart, the user will have the mobility to add m
 
 While developing I used API calls to get products from "https://fakestoreapi.com/".
 The design is simple and very easy for users to navigate. There are no unnecessary animations, only minimal transitions to make the app pleasant for the user.
+Live app: "https://customshop.netlify.app/"
