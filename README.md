@@ -8,9 +8,7 @@ It is also important that the application is fully responsive, so users will be 
 When the user opens the application, he will land on the home page.
 When the user scrolls through the home page, he can see different sections like categories and products from different categories, products slider, etc...
 
-Users can decide in which product category he is interested and they can explore different products for that category.
-After the user decides on which product he is interested in, he can explore a single item to see the description and price. There he can add an item to the cart, or he can choose how many products he wants, and buy the product immediately.
-If he decides to add items to the cart, the user will have the mobility to add multiple products, and after he chooses everything he wants to buy, he will have the total price calculated and checkout button there.
+Users can choose the product category they're interested in and explore various items within that category. Once a user finds a product they like,they can view its description and price. From there, they have the option to add the item to their cart or purchase it immediately, specifying the quantity if they wish. If they opt to add items to their cart, they can continue browsing and adding multiple products. When ready, they can view the total price of their selections and proceed to checkout. This app provides users with the flexibility to shop at their own pace and easily manage their purchases.
 
 While developing I used API calls to get products from "https://fakestoreapi.com/".
 The design is simple and very easy for users to navigate. There are no unnecessary animations, only minimal transitions to make the app pleasant for the user.
