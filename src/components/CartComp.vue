@@ -45,12 +45,14 @@ if (storedArr) {
 }
 
 watch(cartItemAdded, () => {
-  console.log('Desila se promena')
-  storedArr = localStorage.getItem('cartArray')
-  cartItems.value = JSON.parse(storedArr)
-  totalPrice.value = 0
-  sumtotalPrice()
-  cartItemAdded.value = false
+  if (cartItemAdded.value === true) {
+    //console.log('Desila se promena')
+    storedArr = localStorage.getItem('cartArray')
+    cartItems.value = JSON.parse(storedArr)
+    totalPrice.value = 0
+    sumtotalPrice()
+    cartItemAdded.value = false
+  }
 })
 
 const closeCart = () => {

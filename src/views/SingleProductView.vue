@@ -78,10 +78,12 @@ const getSingleProduct = async () => {
 }
 
 watch(cartItemRemoved, () => {
-  console.log('Desila se promena za brisanje')
-  storedArr = localStorage.getItem('cartArray')
-  cartItems.value = JSON.parse(storedArr)
-  cartItemRemoved.value = false
+  if (cartItemRemoved.value === true) {
+    // console.log('Desila se promena za brisanje')
+    storedArr = localStorage.getItem('cartArray')
+    cartItems.value = JSON.parse(storedArr)
+    cartItemRemoved.value = false
+  }
 })
 
 const increaseQuantity = () => {

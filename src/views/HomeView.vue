@@ -51,7 +51,7 @@ const setSticky = () => {
   if (wLocation.value !== '/') {
     observer.unobserve(section1)
     nav.classList.remove('sticky')
-    console.log(nav)
+    //console.log(nav)
   }
 }
 
